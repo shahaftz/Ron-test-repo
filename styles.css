@@ -1,0 +1,787 @@
+/* ===========================================================
+   הילד שגילה (מחדש) תופעה מוזרה — global styles (720, Science)
+   methodica-science-strange-discovery-01, type mafmar-moodle.
+
+   The 720 lomda look of the mafmar-moodle family — NOT Moodle's
+   styling and none of the Moodle question's decorative backgrounds.
+   Provenance, nothing invented:
+     - canvas, screen shell, title, two columns, bottom bar, scroll
+       hint: methodica-science-movo-01 @1dcd1b2 (its 720 build) /
+       methodica-math-gaming-app-01;
+     - Science Subject/* values and the Science gradient:
+       720-design-guidelines → colors-and-gradients.md;
+     - type sizes: 720-design-guidelines → typography.md (title H-6
+       40 Bold, non-question body B-4 24, question running text 22,
+       capsule text 22, feedback 20, buttons B-3 20);
+     - answer capsule, radio, verdict colours: 720-templates →
+       SingleChoiceQuestion.md;
+     - feedback box: the canonical feedback-popup visual style
+       (_global-components.md → Feedback popup system → Visual style),
+       placed in the question's flow as in every mafmar-moodle unit;
+     - content image box: _question-template-defaults.md → "Content
+       image frame" (380 × 380 maximum, hugs the image's ratio).
+   Text column on the RIGHT, image column on the LEFT — the side the
+   Moodle page gave the image.
+   =========================================================== */
+
+:root {
+  /* Subject/* — Science theme (720-design-guidelines, colors-and-gradients.md) */
+  --subject-100: #d4f3ff;
+  --subject-500: #019de5;
+  --subject-700: #007ac6;
+  --subject-900: #002060;
+  --primary-action-gradient: linear-gradient(to bottom, #005FBE 9%, #0059B2 23.361%, #003971 100%);
+  /* Feedback + neutrals (theme-independent) */
+  --state-correct: #609e12;
+  --state-wrong: #b20010;
+  --correct-fill: #edf8ed;          /* Green/5 — capsule */
+  --wrong-fill: #fff0f4;            /* Red/5 — capsule */
+  --feedback-correct-bg: #f2ffe8;   /* Feedback/Correct/200 */
+  --feedback-incorrect-bg: #ffdbdc; /* Feedback/Incorrect/200 */
+  --text: #222222;
+  --text-body: #303030;             /* Natural/800 */
+  --gray-100: #aeaeae;
+  /* Page margin (producer 2026-10-26): content sits in a 1200px box */
+  --page-margin: 40px;
+  --bar-h: 74px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  direction: rtl;
+  font-family: 'Assistant', sans-serif;
+  background: #f2f2f2;
+}
+
+#viewport {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
+#app {
+  position: absolute;
+  width: 1280px;
+  height: 710px;
+  background: #fff;
+  transform-origin: top left;
+  overflow: hidden;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Report / Issue button (hidden in this type, see index.html) ---------- */
+.flag-btn { position: absolute; top: 32px; left: 32px; z-index: 30; }
+.flag-btn[hidden] { display: none; }
+
+/* ---------- Screens ---------- */
+.screen { position: absolute; inset: 0; display: none; }
+.screen.active { display: block; }
+
+.scq-screen-content {
+  position: absolute;
+  inset: 0 0 var(--bar-h) 0;
+  /* bottom 0 (was 24, 2026-11-15): that padding alone made screens that fit scroll by 1–24px; the
+     bottom bar keeps its own top border, so content still stops at a visible edge */
+  padding: 32px var(--page-margin) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Vertical scroll: direction:ltr moves only the scrollbar to the physical
+   right; the children restore RTL flow. Horizontal scrolling never occurs.
+   2026-11-15: the scrollbar's strip is always reserved (scrollbar-gutter) and taken out of the right
+   page margin (--sbw, measured by script.js), so the content box is the same width whether or not the
+   screen scrolls: a scrollbar that appears after "צדקתי?" can no longer re-wrap the answers. */
+.scq-screen-content--scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  direction: ltr;
+  scrollbar-gutter: stable;
+  padding-right: calc(var(--page-margin) - var(--sbw, 0px));
+}
+.scq-screen-content--scroll > * { direction: rtl; }
+/* The entrance float (translateY 16px, ~1s) briefly pushes content down; without this a screen that
+   fits flashes a scrollbar while it settles. The gutter is reserved, so nothing moves when it ends. */
+.screen.m-animate .scq-screen-content--scroll { overflow-y: hidden; }
+
+/* Title — Heading / H-6 (40 Bold), Subject/500. The Moodle heading was white text on a
+   decorative picture (banner1.png / Q 2.png); here it is plain 720 heading text. */
+.sc-title {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--subject-500);
+  text-align: right;
+}
+/* the source sets "(מחדש)" in regular weight inside the bold title — Heading / H-7 (40 Regular) */
+.sc-title-light { font-weight: 400; }
+/* Subtitle — Heading / H-8 (32 Bold), Subject/500 */
+.sc-subtitle {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--subject-500);
+  text-align: right;
+}
+
+/* Running text. Non-question screen: Body / B-4 (24 Regular); question screen: 22 Regular
+   (typography.md → "Running text on question screens — 22px"). Inline emphasis: Bold, same colour. */
+/* --read-k (2026-11-15): 1 at the 1280 × 710 reference and above. Below it the whole canvas is scaled
+   down, so scaleApp() raises the reading text by up to 1.2 (canvas px) to keep it readable. Titles keep
+   their size, so the hierarchy holds; the SC09 board keeps its fixed geometry. */
+.sc-text {
+  margin: 0;
+  font-size: calc(22px * var(--read-k, 1));
+  font-weight: 400;
+  line-height: 1.318;
+  color: var(--text-body);
+  text-align: right;
+  text-wrap: pretty;         /* no one- or two-word last line (rtl-visual.md → Line breaks) */
+}
+.sc-text strong { font-weight: 700; }
+.sc-text--intro { font-size: calc(24px * var(--read-k, 1)); }
+.sc-text--bold { font-weight: 700; color: var(--text); }
+
+.ltr-inline {
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: inline-block;
+}
+
+/* ---------- Two columns: text (right) + image (left) ---------- */
+.sc-cols {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+}
+.sc-text-col {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.sc-media-col {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Content image box: hugs the picture at its own ratio inside the 380 × 380 maximum.
+   These two pictures are transparent PNGs that carry their own photo frame and shadow,
+   so the 720 hairline + 8px padding is not drawn around them (it would frame a frame). */
+.sc-img-frame {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+  max-width: 380px;
+  max-height: 380px;
+}
+.sc-img-frame img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 380px;
+  max-height: 380px;
+}
+
+/* Footnote (SC03): the MBZ sets the reference smaller, in Latin script — Body / B-7 (20 Regular), LTR run */
+.sc-cite {
+  margin: 0;
+  font-size: calc(20px * var(--read-k, 1));
+  line-height: 1.318;
+  color: var(--text-body);
+  text-align: right;
+}
+.sc-cite span { unicode-bidi: isolate; }
+.nowrap { white-space: nowrap; }
+.dd-tray[hidden] { display: none; }
+/* Numbered steps (SC05). The RTL list marker puts the period to the LEFT of the digit, as in "א." */
+.sc-list {
+  margin: 0;
+  padding-inline-start: 32px;
+  font-size: calc(24px * var(--read-k, 1));
+  line-height: 1.318;
+  color: var(--text-body);
+}
+.sc-list li + li { margin-top: 4px; }
+/* the research hypothesis (SC06), quoted in the source */
+.sc-quote { padding-inline-start: 16px; border-inline-start: 3px solid var(--subject-500); }
+
+/* SC10: the lab picture sits above the graph. At 268px both media still fit above the bottom bar. */
+.sc-fig { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.sc-img-frame--data img { max-width: 320px; max-height: 212px; }
+.sc-img-frame--small img { max-width: 268px; max-height: 268px; }
+/* the last screen's text runs to half the page (producer 2026-11-12) */
+.sc-text-col--half { flex: 0 1 600px; max-width: 600px; }
+.sc-text-col--half .sc-text { text-wrap: balance; }   /* short fixed paragraphs: no two-word last line */
+.sc-media-col { gap: 8px; }
+.sc-media-caption {
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.318;
+  color: var(--text-body);
+  text-align: center;
+}
+
+/* ---------- Image zoom (720 global component: trigger, shared backdrop, surface, close) ---------- */
+.img-zoom-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--subject-500);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--subject-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.img-zoom-btn:hover,
+.img-zoom-btn:focus-visible { background: var(--subject-500); color: #fff; }
+.img-zoom-btn:focus-visible { outline: 3px solid #ff8c00; outline-offset: 2px; }
+#img-zoom-modal {
+  position: absolute;
+  inset: 0;
+  z-index: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#img-zoom-modal.hidden { display: none; }
+.img-zoom-modal-backdrop { position: absolute; inset: 0; background: rgba(255, 255, 255, 0.8); }
+.img-zoom-modal-panel {
+  position: relative;
+  max-width: 1200px;
+  max-height: 690px;
+  padding: 24px 72px;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px #e3e3e3;
+}
+.img-zoom-modal-close {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--subject-500);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--subject-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.img-zoom-modal-close:hover,
+.img-zoom-modal-close:focus-visible { background: var(--subject-500); color: #fff; }
+.img-zoom-modal-stage img { display: block; width: auto; height: auto; }
+
+/* ---------- Drag and drop on a picture (SC09) — 720 Drag&Drop states on a ddimageortext board ---------- */
+.sc-cols--dd { --dd-w: 170px; }   /* the one size of an empty drop zone and the minimum of a chip */
+.sc-cols--dd .sc-text-col { flex: 1 1 auto; }
+.dd-tray {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+.dd-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: var(--chip-w, auto);
+  min-width: var(--dd-w);
+  min-height: 36px;
+  margin: 0;
+  padding: 4px 14px;
+  border: 1px solid rgba(174, 174, 174, 0.5);      /* Draggable Item / Default */
+  border-radius: 999px;
+  background: #fff;
+  font-family: 'Assistant', sans-serif;
+  font-size: 22px;           /* producer 2026-11-15 (was 18) */
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--text);
+  text-align: center;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.dd-chip--title { --chip-w: 100%; }
+.dd-chip[aria-pressed="true"] { border: 1.5px solid var(--subject-500); }   /* Draggable Item / Selected */
+.dd-chip.is-placed { visibility: hidden; }                                     /* ghost slot keeps the tray stable */
+.dd-chip.is-dragging { opacity: 0.4; }
+.dd-chip:focus-visible { outline: 3px solid #ff8c00; outline-offset: 2px; }
+.dd-chip:disabled { cursor: default; }
+.dd-ghost {
+  position: absolute;
+  z-index: 700;
+  pointer-events: none;
+  border: 1.5px solid var(--subject-500);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+  cursor: grabbing;
+}
+
+/* Board 2026-11-15: the axis-label gutter is wide enough for the longest label at 22px plus the
+   reserved verdict-icon space (166 + 46 = 212), so the picture is 528 wide (was 570). */
+.dd-board {
+  position: relative;
+  width: 748px;           /* 220 axis-label gutter + 528 picture */
+  height: 488px;          /* 44 title band + 358 picture + 86 axis-label band */
+}
+.dd-board-img {
+  position: absolute;
+  left: 220px;
+  top: 44px;
+  width: 528px;
+  height: auto;
+}
+.dd-zone {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--dd-w);     /* every EMPTY zone is the same neutral size: the size never hints at the answer */
+  height: 36px;
+  margin: 0;
+  padding: 0 12px;
+  border: 1px dashed rgba(0, 0, 0, 0.6);           /* Drop Zone / Default */
+  border-radius: 999px;
+  background: #f3f4f5;
+  font-family: 'Assistant', sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--text);
+  white-space: nowrap;
+  cursor: pointer;
+}
+/* A filled zone fits its text and reserves equal room on both sides, keeping the label centered while
+   leaving space for the verdict icon on the right. makeDragScreen re-anchors it after every change. */
+.dd-zone.has-text { width: auto; min-width: var(--dd-w); padding: 0 34px; }
+.dd-zone.is-over { border-color: var(--subject-500); background: #fff; }               /* Hover */
+.dd-zone.is-filled { border: 1px solid var(--subject-500); background: var(--subject-100); cursor: grab; touch-action: none; }  /* Dropped */
+.dd-zone.is-correct { border: 1px solid var(--state-correct); background: #fff; }      /* Correct */
+.dd-zone.is-wrong { border: 1px solid var(--state-wrong); background: #fff; }          /* Incorrect */
+.dd-zone:disabled { cursor: default; }
+.dd-zone:focus-visible { outline: 3px solid #ff8c00; outline-offset: 2px; }
+.dd-zone-ico {                  /* V / X on the RIGHT of the answer (RTL start), as on the capsules */
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  display: flex;
+  width: 16px;
+  transform: translateY(-50%);
+}
+.dd-zone-ico:empty { display: none; }
+
+/* the answer toggle (720 ShowAnswer): white pill, 1px #484848 */
+.sc-reveal-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 39px;
+  margin-top: 16px;
+  padding: 0 20px;
+  background: #fff;
+  color: var(--text);
+  border: 1px solid #484848;
+  border-radius: 1000px;
+  font-family: 'Assistant', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.sc-reveal-btn.hidden { display: none; }
+.sc-reveal-btn:focus-visible { outline: 3px solid #ff8c00; outline-offset: 2px; }
+
+/* ---------- Single-choice answers (720 SingleChoiceQuestion capsule) ---------- */
+/* All choice screens use the SC02 capsule width at the reference font size. The width scales with
+   reading text, and fitAnswers() can still widen a screen if an option would exceed two lines. */
+.scq-answers {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 16px;
+  width: min(100%, calc(628px * var(--read-k, 1)));
+  max-width: 100%;
+}
+.scq-opt {
+  width: auto;
+  min-height: calc(46px * var(--read-k, 1));
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 999px;
+  /* the stroke is an inset shadow: grading never changes a capsule's size */
+  box-shadow: inset 0 0 0 2px var(--subject-500);
+  background: #fff;
+  cursor: pointer;
+  font-family: 'Assistant', sans-serif;
+  text-align: right;
+}
+.scq-opt:focus-visible { outline: 3px solid #ff8c00; outline-offset: 2px; }
+.scq-opt:disabled { cursor: default; }
+.scq-opt-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: calc(22px * var(--read-k, 1));
+  font-weight: 400;
+  line-height: 1.318;
+  color: var(--text);
+  text-align: right;
+  /* natural wrapping fills each line (balance broke lines early and left empty room — S8);
+     pretty only keeps a single word off the last line */
+  text-wrap: pretty;
+}
+.scq-radio {
+  order: -1;   /* RTL: first in flow = rightmost */
+  position: relative;
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--subject-500);
+  border-radius: 50%;
+  background: transparent;
+}
+.scq-radio::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  transform: translate(-50%, -50%);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.scq-opt.selected .scq-radio { background: var(--subject-500); border-color: var(--subject-500); }
+.scq-opt.correct { box-shadow: inset 0 0 0 1.5px var(--state-correct); background: var(--correct-fill); }
+.scq-opt.correct .scq-radio { border-color: var(--state-correct); background: var(--state-correct); }
+.scq-opt.correct .scq-radio::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 10'%3E%3Cpath d='M1.5 5.2 L5 8.6 L11.5 1.2' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-size: 12.73px 9.19px;
+}
+.scq-opt.wrong { box-shadow: inset 0 0 0 1.5px var(--state-wrong); background: var(--wrong-fill); }
+.scq-opt.wrong .scq-radio { border-color: var(--state-wrong); background: var(--state-wrong); }
+.scq-opt.wrong .scq-radio::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1.5 1.5 L8.5 8.5 M8.5 1.5 L1.5 8.5' stroke='white' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-size: 10px 10px;
+}
+
+/* ---------- Feedback box — the canonical feedback-popup visual style, in the question's flow ---------- */
+.sc-feedback {
+  width: 426px;
+  max-width: 100%;
+  /* 16px top/bottom in the question's flow (2026-11-15; the overlay popup keeps 24): the box is one
+     line, and the 16px it saves keeps screens like SC02 from scrolling after "צדקתי?" */
+  padding: 16px 24px;
+  border-radius: 12px;
+  border: 0.3px solid var(--gray-100);
+  background: var(--feedback-incorrect-bg);
+  direction: rtl;
+  text-align: right;
+}
+.sc-feedback.hidden { display: none; }
+.sc-feedback.state-correct { background: var(--feedback-correct-bg); }
+.sc-feedback.state-incorrect { background: var(--feedback-incorrect-bg); }
+.sc-feedback-title {
+  margin: 0;
+  font-size: calc(20px * var(--read-k, 1));
+  font-weight: 700;
+  line-height: normal;
+  color: var(--text);
+}
+
+/* ---------- Bottom bar ---------- */
+.scq-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--bar-h);
+  background: #fff;
+  border-top: 0.4px solid var(--gray-100);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 34px;
+  direction: ltr;
+  z-index: 15;
+}
+.scq-bar-main {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.scq-check,
+.btn-continue,
+.scq-back {
+  min-width: 140px;
+  height: 39px;
+  padding: 0 40px;
+  border-radius: 1000px;
+  font-family: 'Assistant', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  cursor: pointer;
+  direction: rtl;
+  unicode-bidi: isolate;
+}
+/* Hover weight change, stable footprint: the label reserves its SemiBold width in the same grid cell */
+.nav-label { display: inline-grid; }
+.nav-label::before {
+  content: attr(data-label);
+  font-weight: 600;
+  block-size: 0;
+  visibility: hidden;
+  overflow: hidden;
+}
+.scq-check {
+  border: none;
+  background: var(--gray-100);
+  color: var(--text-body);
+  cursor: not-allowed;
+}
+.scq-check:not(:disabled) {
+  background: var(--primary-action-gradient);
+  color: #fff;
+  cursor: pointer;
+}
+.btn-continue {
+  border: none;
+  background: var(--primary-action-gradient);
+  color: #fff;
+}
+.btn-continue:disabled {
+  background: var(--gray-100);
+  color: var(--text-body);
+  cursor: not-allowed;
+}
+.btn-continue.hidden,
+.scq-check.hidden { display: none; }
+.scq-back {
+  border: 1px solid var(--subject-700);
+  background: #fff;
+  color: var(--subject-700);
+}
+.scq-back:disabled {
+  border-color: #ccc;
+  color: #ccc;
+  cursor: not-allowed;
+}
+.scq-check:not(:disabled):hover,
+.btn-continue:not(:disabled):hover,
+.scq-back:not(:disabled):hover { font-weight: 600; }
+.scq-check:focus-visible,
+.scq-back:focus-visible,
+.btn-continue:focus-visible {
+  outline: 3px solid #ff8c00;
+  outline-offset: 2px;
+}
+
+/* The scroll gesture cursor is intentionally hidden on every screen. */
+.scroll-hint {
+  display: none;
+  position: absolute;
+  right: 22px;
+  top: 300px;
+  width: 28px;
+  height: 33px;
+  z-index: 40;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 1;
+  transition: opacity 0.18s linear;
+}
+/* Exception: SC08 (שאלה 5) shows it — the script then decides, by real overflow, whether it appears. */
+#sc08-scroll-hint { display: block; }
+.scroll-hint.is-visible { visibility: visible; }
+.scroll-hint.is-dismissed { opacity: 0; }
+.scroll-hint__group {
+  position: absolute;
+  inset: 0;
+  display: block;
+  opacity: 0;
+}
+.scroll-hint__cursor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  width: 28px;
+  height: 33px;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.35));
+}
+.scroll-hint__ripple {
+  position: absolute;
+  left: 14px;
+  top: 8px;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border: 2.5px solid var(--subject-500);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.2);
+}
+.scroll-hint.is-visible .scroll-hint__group {
+  animation: scroll-hint-travel 2.6s linear 0.25s infinite both;
+}
+.scroll-hint.is-visible .scroll-hint__ripple {
+  animation: scroll-hint-ripple 2.6s linear 0.25s infinite both;
+}
+@keyframes scroll-hint-travel {
+  0%   { opacity: 0; transform: translateY(-6px); }
+  12%  { opacity: 1; transform: translateY(0); }
+  27%  { opacity: 1; transform: translateY(0); }
+  77%  { opacity: 1; transform: translateY(130px); }
+  92%  { opacity: 0; transform: translateY(130px); }
+  100% { opacity: 0; transform: translateY(130px); }
+}
+@keyframes scroll-hint-ripple {
+  0%   { opacity: 0;   transform: scale(0.2); }
+  22%  { opacity: 0;   transform: scale(0.2); }
+  30%  { opacity: 0.9; transform: scale(0.8); }
+  55%  { opacity: 0.5; transform: scale(1.05); }
+  70%  { opacity: 0;   transform: scale(1.2); }
+  100% { opacity: 0;   transform: scale(1.2); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-hint, #sc08-scroll-hint { display: none; }
+}
+
+/* Drag gesture hint (SC09 only) — same hand + ripple vocabulary as the scroll hint.
+   script.js sets left/top (the hand's fingertip on the first free chip) and --dx/--dy (the trip
+   onto an empty drop zone), and adds .is-visible once the screen reveal has settled. The first press on a
+   chip or a zone dismisses it for good. */
+.drag-hint {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 28px;
+  height: 33px;
+  margin: -6px 0 0 -12px;     /* the fingertip (≈12,6 in the cursor art) sits on left/top */
+  z-index: 40;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 1;
+  transition: opacity 0.18s linear;
+}
+.drag-hint.is-visible { visibility: visible; }
+.drag-hint.is-dismissed { opacity: 0; }
+.drag-hint__group {
+  position: absolute;
+  inset: 0;
+  display: block;
+  opacity: 0;
+}
+.drag-hint__cursor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  width: 28px;
+  height: 33px;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.35));
+}
+.drag-hint__ripple {
+  position: absolute;
+  left: 12px;
+  top: 6px;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border: 2.5px solid var(--subject-500);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.2);
+}
+.drag-hint__chip {               /* the carried item: a blank capsule, so the hint names no answer */
+  position: absolute;
+  left: 12px;
+  top: 6px;
+  width: 64px;
+  height: 26px;
+  margin: -13px 0 0 -32px;
+  border: 1.5px solid var(--subject-500);
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+  opacity: 0;
+}
+.drag-hint.is-visible .drag-hint__group {
+  animation: drag-hint-travel 3s ease-in-out 0.25s infinite both;
+}
+.drag-hint.is-visible .drag-hint__ripple {
+  animation: drag-hint-ripple 3s linear 0.25s infinite both;
+}
+.drag-hint.is-visible .drag-hint__chip {
+  animation: drag-hint-chip 3s linear 0.25s infinite both;
+}
+@keyframes drag-hint-travel {
+  0%   { opacity: 0; transform: translate(0, -6px); }
+  10%  { opacity: 1; transform: translate(0, 0); }
+  25%  { opacity: 1; transform: translate(0, 0); }
+  72%  { opacity: 1; transform: translate(var(--dx, 0px), var(--dy, 0px)); }
+  82%  { opacity: 1; transform: translate(var(--dx, 0px), var(--dy, 0px)); }
+  94%  { opacity: 0; transform: translate(var(--dx, 0px), var(--dy, 0px)); }
+  100% { opacity: 0; transform: translate(var(--dx, 0px), var(--dy, 0px)); }
+}
+@keyframes drag-hint-ripple {     /* press on the chip */
+  0%   { opacity: 0;   transform: scale(0.2); }
+  12%  { opacity: 0;   transform: scale(0.2); }
+  18%  { opacity: 0.9; transform: scale(0.8); }
+  26%  { opacity: 0;   transform: scale(1.2); }
+  100% { opacity: 0;   transform: scale(1.2); }
+}
+@keyframes drag-hint-chip {       /* picked up with the press, carried, dropped on release */
+  0%   { opacity: 0; }
+  20%  { opacity: 0; }
+  26%  { opacity: 0.95; }
+  76%  { opacity: 0.95; }
+  84%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .drag-hint { display: none; }
+}

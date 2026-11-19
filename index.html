@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>הילד שגילה (מחדש) תופעה מוזרה</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=2">
+<!-- 720 animation-system engine, copied verbatim (skill engine revision 2026-10-20); loads after styles.css -->
+<link rel="stylesheet" href="motion.css?v=2">
+</head>
+<body>
+<!-- ===================================================================
+     הילד שגילה (מחדש) תופעה מוזרה — methodica-science-strange-discovery-01, type mafmar-moodle.
+
+     Source: backup-moodle2-activity-1814117-quiz1814117-20261112-1030-nu.mbz
+     (mod_quiz 88613, 12 slots on 8 pages, sumgrades 99, grade 100, gradepass 70).
+     One screen per Moodle SLOT, in slot order; SCnn = slot n = catalogue item 0nn (as in
+     methodica-science-movo-01). Pages 3, 4 and 6 hold two or three slots each; each slot carries its
+     own picture in the MBZ, so each becomes its own screen. The Hebrew (lang="he") multilang text of
+     the MBZ is the content; the Arabic twin text is not used here.
+
+     2026-11-12: stage 1 = SC01–SC02; stage 2 = SC03–SC12 (the whole quiz).
+
+     Moodle decoration that is NOT reproduced (720 look instead, producer instruction 2026-11-12):
+       banner1.png (title background), Q 2.png ("שאלה N" heading backgrounds), שאלה1.png / Paper.png
+       (lined-paper panels), Rectangle_.png (answer backgrounds), idiea.png (lightbulb icon), and the
+       Arabic pictures (ernesto_A (1).png, Pic Frame3 (2).png).
+     Content pictures kept, byte-identical to the MBZ (assets/img/scNN-*): Pic Frame, Pic Frame2,
+     Pic Frame3, Q3, Q4, Q5 (1), גרף 6 (Q6 board), גרף שאלה 6 (Q7's own file), Q7, Q8.
+     Q6.png (story art) is not shown — see the SC09 comment.
+
+     Motion (720 animation-system, 2026-11-12; motion.css / motion.js copied verbatim from the skill):
+     every screen reveals once per session, in Hebrew reading order — group 1 the title block
+     (h1 + subtitle), group 2 the right column (text + question + answers, one group, never per
+     option), group 3 the left column (picture). float-in everywhere EXCEPT SC09, whose groups 2 and 3
+     hold the drag-and-drop tray and board: fade-only there (rule precedence #1 — measured interactive
+     elements never float). The inline feedback boxes carry .m-popup (fade on every open). Excluded:
+     the bottom bar, the zoom modal, the drag ghost.
+     =================================================================== -->
+<div id="viewport">
+  <div id="app">
+
+    <!-- Issue reporting ("מצאתם בעיה?") is not part of the mafmar-moodle type yet (no
+         unit-js/25-report.js), so the button is hidden rather than left dead on screen. -->
+    <button type="button" class="flag-btn" aria-label="מצאתם בעיה?" hidden></button>
+
+    <!-- SC01 — slot 1 (page 1), qbe 876862 v35 (q 3012436), description "פתיחה", 0 marks.
+         Ungraded: "המשך" is always enabled. Catalogue item 001 (no question). -->
+    <section class="screen active" id="SC01" data-screen="SC01" aria-label="פתיחה">
+      <div class="scq-screen-content scq-screen-content--scroll" id="sc01-content">
+        <h1 class="sc-title" data-reveal="1">הילד שגילה <span class="sc-title-light">(מחדש)</span> תופעה מוזרה</h1>
+        <p class="sc-subtitle" data-reveal="1">משימת הערכה מסכמת</p>
+        <div class="sc-cols">
+          <div class="sc-text-col" data-reveal="2">
+            <p class="sc-text sc-text--intro">לפני יותר מאלפיים שנה הבחין אריסטו בתופעה מסקרנת:<br><strong>לעיתים מים חמים קופאים מהר יותר ממים קרים!</strong></p>
+            <p class="sc-text sc-text--intro">תופעה שנראית כמעט הפוכה לשכל הישר.</p>
+            <p class="sc-text sc-text--intro">במשך השנים היא נשכחה, עד שבשנות ה-60 תלמיד תיכון מטנזניה בשם אֶרַסְטוֹ מְפֶּמְבָּה גילה תופעה זו מחדש במקרה, כשניסה להכין גלידה.</p>
+            <p class="sc-text sc-text--intro">הוא הכין שתי תערובות: לאחת נתן להתקרר, ולשנייה לא, והכניס את שתיהן בו זמנית למקפיא. לתדהמתו גילה שהתערובת שהייתה חמה יותר לפני ההכנסה למקפיא קפאה מהר יותר מהתערובת שהייתה קרה יותר. מניסויים חוזרים נמצא כי התופעה מתקיימת במגוון חומרים במצב נוזלי.</p>
+            <p class="sc-text sc-text--intro"><strong>התופעה (אפקט, <span class="ltr-inline">Effect</span>) נקראת על שמו - אֶפֶקְט מְפֶּמְבָּה.</strong></p>
+          </div>
+          <div class="sc-media-col" data-reveal="3">
+            <!-- Pic Frame.png: illustration with its own caption "ארסטו מפמבה" baked in. Ambient story
+                 art (no data the learner reasons from) → no zoom (_question-template-defaults.md → Image zoom). -->
+            <div class="sc-img-frame">
+              <img src="assets/img/sc01-mpemba.png" width="391" height="514" alt="ארסטו מפמבה">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-hint" id="sc01-scroll-hint" aria-hidden="true">
+        <span class="scroll-hint__group"><span class="scroll-hint__ripple"></span>
+          <img class="scroll-hint__cursor" src="assets/img/scroll-hint-cursor.svg" alt="" width="28" height="33"></span>
+      </div>
+      <div class="scq-bar">
+        <div class="scq-bar-main">
+          <button type="button" class="btn-continue" id="sc01-continue"><span class="nav-label" data-label="המשך">המשך</span></button>
+        </div>
+        <button type="button" class="scq-back" id="sc01-back" disabled><span class="nav-label" data-label="חזרה">חזרה</span></button>
+      </div>
+    </section>
+
+    <!-- SC02 — slot 2 (page 2), qbe 876874 v54 (q 2986610), multichoice single, shuffled,
+         12 marks, "שאלה 1". Catalogue item 002, question q1 (choice).
+         Answer key (MBZ fractions): 4733194 = 1, 4733195 = 0, 4733196 = 0.
+         Options carry no trailing period (720 producer decision 2026-11-03); the MBZ has one.
+         "(‎20°C‎ −)" in the MBZ (LRM-wrapped, minus after) is set as one LTR run "−20°C". -->
+    <section class="screen" id="SC02" data-screen="SC02" aria-label="שאלה 1">
+      <div class="scq-screen-content scq-screen-content--scroll" id="sc02-content">
+        <h1 class="sc-title" data-reveal="1">שאלה 1</h1>
+        <div class="sc-cols">
+          <div class="sc-text-col" data-reveal="2">
+            <p class="sc-text sc-text--bold">זוהי הדגמה של אפקט מפמבה:</p>
+            <p class="sc-text">כשמרתיחים מים ומשליכים אותם לאוויר כאשר הטמפרטורות בחוץ נמוכות ממינוס עשרים מעלות צלזיוס (<span class="ltr-inline">−20°C</span>), המים באוויר הופכים לגבישי קרח באופן מיידי. תופעה זו לא מתרחשת עם מים קרים באותם תנאי סביבה.</p>
+            <p class="sc-text sc-text--bold" id="sc02-prompt">בחרו את הנימוק המדעי המסביר מדוע אפקט מפמבה לא הגיוני לכאורה.</p>
+            <div class="scq-answers" id="sc02-answers" role="radiogroup" aria-labelledby="sc02-prompt">
+              <button type="button" class="scq-opt" data-id="4733194" role="radio" aria-checked="false"><span class="scq-opt-text">ככל שהחומר חם יותר בתחילת התהליך, הוא צריך להתקרר יותר כדי להגיע לקפיאה כי הפרש הטמפרטורות גדול יותר</span><span class="scq-radio" aria-hidden="true"></span></button>
+              <button type="button" class="scq-opt" data-id="4733195" role="radio" aria-checked="false"><span class="scq-opt-text">מים חמים עשויים להתאדות בתהליך ולשנות את נפחם במהלך הקירור</span><span class="scq-radio" aria-hidden="true"></span></button>
+              <button type="button" class="scq-opt" data-id="4733196" role="radio" aria-checked="false"><span class="scq-opt-text">מקובל לחשוב שחומר חם לא יכול לקפוא מהר יותר מחומר קר</span><span class="scq-radio" aria-hidden="true"></span></button>
+            </div>
+            <div id="sc02-feedback" class="sc-feedback m-popup hidden" role="status" aria-live="polite">
+              <p class="sc-feedback-title" id="sc02-feedback-title"></p>
+            </div>
+          </div>
+          <div class="sc-media-col" data-reveal="3">
+            <!-- Pic Frame2.png: a girl throwing boiled water into frozen air — illustrates the text
+                 beside it; carries no data → no zoom. -->
+            <div class="sc-img-frame">
+              <img src="assets/img/sc02-mpemba-snow.png" width="437" height="437" alt="הדגמת אפקט מפמבה בשלג: ילדה משליכה מים רותחים לאוויר הקפוא והם הופכים לגבישי קרח">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-hint" id="sc02-scroll-hint" aria-hidden="true">
+        <span class="scroll-hint__group"><span class="scroll-hint__ripple"></span>
+          <img class="scroll-hint__cursor" src="assets/img/scroll-hint-cursor.svg" alt="" width="28" height="33"></span>
+      </div>
+      <div class="scq-bar">
+        <div class="scq-bar-main">
+          <button type="button" class="scq-check" id="sc02-check" disabled><span class="nav-label" data-label="צדקתי?">צדקתי?</span></button>
+          <button type="button" class="btn-continue hidden" id="sc02-continue"><span class="nav-label" data-label="המשך">המשך</span></button>
+        </div>
+        <button type="button" class="scq-back" id="sc02-back"><span class="nav-label" data-label="חזרה">חזרה</span></button>
+      </div>
+    </section>
+
+    <!-- SC03 — slot 3 (page 3), qbe 876871 v10 (q 2986062), description "אפקט מפמבה", 0 marks. Item 003 (no question).
+         Title = the Moodle question name (the slot shows no heading of its own). -->
+    <section class="screen" id="SC03" data-screen="SC03" aria-label="אפקט מפמבה">
+      <div class="scq-screen-content scq-screen-content--scroll" id="sc03-content">
+        <h1 class="sc-title" data-reveal="1">אפקט מפמבה</h1>
+        <div class="sc-cols">
+          <div class="sc-text-col" data-reveal="2">
+            <p class="sc-text sc-text--intro">למרות הספקות וחוסר ההיגיון לכאורה, מפמבה התעקש לבדוק את התופעה לעומק וערך ניסויים שהראו כי היא חוזרת שוב ושוב. העובדה שנער צעיר מטנזניה הצליח להטביע את שמו על תופעה מדעית בינלאומית – "אפקט מפמבה" – ממחישה את ערכה של חשיבה עצמאית, תעוזה מחשבתית והתמדה, ומהווה השראה לכך שהמדע פתוח לכל מי שסקרן ונחוש.</p>
+            <p class="sc-text sc-text--intro">בהמשך היה מפמבה שותף לכתיבת מאמר מדעי* על התגלית,<br>ומאז נושאת התופעה את שמו.<br><strong>עד היום חוקרים סבורים שהיא מתרחשת רק בתנאים מיוחדים, אך אין לה הסבר מוסכם אחד</strong>.</p>
+            <p class="sc-cite"><span dir="ltr">* Mpemba, Erasto B. Osborne, Denis G., Cool?, Physics Education (Institute of Physics) <span class="nowrap">4: 172–175 (1969)</span></span></p>
+          </div>
+          <div class="sc-media-col" data-reveal="3">
+            <div class="sc-img-frame">
+              <img src="assets/img/sc03-mpemba-effect.png" width="493" height="466" alt="אפקט מפמבה: תופעה שבה נוזל חם קופא מהר יותר מאשר נוזל כשהוא קר">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-hint" id="sc03-scroll-hint" aria-hidden="true">
+        <span class="scroll-hint__group"><span class="scroll-hint__ripple"></span>
+          <img class="scroll-hint__cursor" src="assets/img/scroll-hint-cursor.svg" alt="" width="28" height="33"></span>
+      </div>
+      <div class="scq-bar">
+        <div class="scq-bar-main">
+          <button type="button" class="btn-continue" id="sc03-continue"><span class="nav-label" data-label="המשך">המשך</span></button>
+        </div>
+        <button type="button" class="scq-back" id="sc03-back"><span class="nav-label" data-label="חזרה">חזרה</span></button>
+      </div>
+    </section>
+
+    <!-- SC04 — slot 4 (page 3), qbe 876863 v24 (q 2986611), multichoice single, shuffled, 12 marks, "שאלה 2". Item 004 q1.
+         Key: 4733197 = 1, 4733198–200 = 0. -->
+    <section class="screen" id="SC04" data-screen="SC04" aria-label="שאלה 2">
+      <div class="scq-screen-content scq-screen-content--scroll" id="sc04-content">
+        <h1 class="sc-title" data-reveal="1">שאלה 2</h1>
+        <div class="sc-cols">
+          <div class="sc-text-col" data-reveal="2">
+            <p class="sc-text sc-text--bold" id="sc04-prompt">לפניכם משפטים המתארים תוצאות בלבד.<br>איזה משפט מתאר תוצאה ממנה ניתן להסיק כי התופעה מתרחשת רק בתנאים מיוחדים?</p>
+            <div class="scq-answers" id="sc04-answers" role="radiogroup" aria-labelledby="sc04-prompt">
+              <button type="button" class="scq-opt" data-id="4733197" role="radio" aria-checked="false"><span class="scq-opt-text">האפקט הופיע כששמו מים חמים וקרים בכלים קטנים ופתוחים</span><span class="scq-radio" aria-hidden="true"></span></button>
+              <button type="button" class="scq-opt" data-id="4733198" role="radio" aria-checked="false"><span class="scq-opt-text">אפקט מפמבה הופיע בכל הניסויים, בלי קשר לאופן ביצועם</span><span class="scq-radio" aria-hidden="true"></span></button>
+              <button type="button" class="scq-opt" data-id="4733199" role="radio" aria-checked="false"><span class="scq-opt-text">המים החמים התקררו מהר רק בהתחלה, ואז האטו את קצב ההתקררות</span><span class="scq-radio" aria-hidden="true"></span></button>
+              <button type="button" class="scq-opt" data-id="4733200" role="radio" aria-checked="false"><span class="scq-opt-text">זמן ההקפאה היה דומה בכל הטמפרטורות ההתחלתיות</span><span class="scq-radio" aria-hidden="true"></span></button>
+            </div>
+            <div id="sc04-feedback" class="sc-feedback m-popup hidden" role="status" aria-live="polite">
+              <p class="sc-feedback-title" id="sc04-feedback-title"></p>
+            </div>
+          </div>
+          <div class="sc-media-col" data-reveal="3">
+            <div class="sc-img-frame">
+              <img src="assets/img/sc03-mpemba-effect.png" width="493" height="466" alt="אפקט מפמבה: תופעה שבה נוזל חם קופא מהר יותר מאשר נוזל כשהוא קר">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-hint" id="sc04-scroll-hint" aria-hidden="true">
+        <span class="scroll-hint__group"><span class="scroll-hint__ripple"></span>
+          <img class="scroll-hint__cursor" src="assets/img/scroll-hint-cursor.svg" alt="" width="28" height="33"></span>
+      </div>
+      <div class="scq-bar">
+        <div class="scq-bar-main">
+          <button type="button" class="scq-check" id="sc04-check" disabled><span class="nav-label" data-label="צדקתי?">צדקתי?</span></button>
+          <button type="button" class="btn-continue hidden" id="sc04-continue"><span class="nav-label" data-label="המשך">המשך</span></button>
+        </div>
+        <button type="button" class="scq-back" id="sc04-back"><span class="nav-label" data-label="חזרה">חזרה</span></button>
+      </div>
+    </section>
+
+    <!-- SC05 — slot 5 (page 4), qbe 876868 v9 (q 2986063), description "ניסוי", 0 marks. Item 005 (no question).
+         Title = the Moodle question name; the slot's own heading (h4) is the bold lead line. -->
+    <section class="screen" id="SC05" data-screen="SC05" aria-label="ניסוי">
+      <div class="scq-screen-content scq-screen-content--scroll" id="sc05-content">
+        <h1 class="sc-title" data-reveal="1">ניסוי</h1>
+        <div class="sc-cols">
+          <div class="sc-text-col" data-reveal="2">
+            <p class="sc-text sc-text--intro sc-text--bold">החלטתם לנסות ולהיות "מפמבה 2", ולתכנן ניסוי הבודק האם התופעה המוזרה<br>מתרחשת בנוזל נוסף. החלטתם על ג'לי למאכל!</p>
+            <p class="sc-text sc-text--intro">אופן ההכנה של ג'לי למאכל:</p>
+            <ol class="sc-list sc-text--intro">
+              <li>שופכים את אבקת הג'לי לקערה.</li>
+              <li>מוסיפים כוס מים רותחים ומערבבים עד שהאבקה נמסה לגמרי.</li>
+              <li>מוסיפים כוס מים קרים ומערבבים שוב.</li>
+              <li>מעבירים לכלים אישיים או לתבנית.</li>
+              <li>מכניסים למקרר להתמצקות (בערך <span class="ltr-inline">2–4</span> שעות).</li>
+            </ol>
+          </div>
+          <div class="sc-media-col" data-reveal="3">
+            <div class="sc-img-frame">
+              <img src="assets/img/sc05-jelly-lab.png" width="391" height="514" alt="מדען מכין ג'לי צבעוני במעבדה">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-hint" id="sc05-scroll-hint" aria-hidden="true">
+        <span class="scroll-hint__group"><span class="scroll-hint__ripple"></span>
+          <img class="scroll-hint__cursor" src="assets/img/scroll-hint-cursor.svg" alt="" width="28" height="33"></span>
+      </div>
+      <div class="scq-bar">
+        <div class="scq-bar-main">
+          <button type="button" class="btn-continue" id="sc05-continue"><span class="nav-label" data-label="המשך">המשך</span></button>
+        </div>
+        <button type="button" class="scq-back" id="sc05-back"><span class="nav-label" data-label="חזרה">חזרה</span></button>
+      </div>
+    </section>
+
+    <!-- SC06 — slot 6 (page 4), qbe 876864 v9 (q 2986612), multichoice single, shuffled, 12 marks, "שאלה 3". Item 006 q1.
+         Key: 4733201 = 1, 4733202–204 = 0. Same picture as SC05 (Q3 (1).png = Q3.png, same contenthash). -->
+    <section class="screen" id="SC06" data-screen="SC06" aria-label="שאלה 3">
+      <div class="scq-screen-content scq-screen-content--scroll" id="sc06-content">
+        <h1 class="sc-title" data-reveal="1">שאלה 3</h1>
+        <div class="sc-cols">
+          <div class="sc-text-col" data-reveal="2">
+            <p class="sc-text">אתם מתכננים ניסוי כדי לבדוק האם אפקט מפמבה מתקיים גם בג׳לי למאכל.</p>
+            <p class="sc-text sc-text--bold">השערת המחקר שלכם:</p>
+            <p class="sc-text sc-quote">"ככל שהטמפרטורה ההתחלתית של הג׳לי גבוהה יותר – כך זמן ההתמצקות יהיה קצר יותר."</p>
+            <p class="sc-text sc-text--bold" id="sc06-prompt">מדוע חשוב לנסח השערה שמראה על קשר ברור בין הגורם המשפיע לגורם המושפע?</p>
+            <div class="scq-answers" id="sc06-answers" role="radiogroup" aria-labelledby="sc06-prompt">
+              <button type="button" class="scq-opt" data-id="4733201" role="radio" aria-checked="false"><span class="scq-opt-text">כדי להגדיר מה משתנה ומה נמדד, לבדוק את הקשר ביניהם ולהציב מטרה ברורה לניסוי</span><span class="scq-radio" aria-hidden="true"></span></button>
+              <button type="button" class="scq-opt" data-id="4733202" role="radio" aria-checked="false"><span class="scq-opt-text">כדי לזהות אם ההתמצקות קשורה לשינוי פיזיקלי או לתהליך אחר</span><span class="scq-radio" aria-hidden="true"></span></button>
+              <button type="button" class="scq-opt" data-id="4733203" role="radio" aria-checked="false"><span class="scq-opt-text">כדי לוודא שהטמפרטורה היא המשתנה היחיד שמשתנה בין הקבוצות בניסוי</span><span class="scq-radio" aria-hidden="true"></span></button>
+              <button type="button" class="scq-opt" data-id="4733204" role="radio" aria-checked="false"><span class="scq-opt-text">כדי לבחור את הציוד המתאים לניסוי ולהבטיח שהתהליך יתבצע באופן תקין</span><span class="scq-radio" aria-hidden="true"></span></button>
+            </div>
+            <div id="sc06-feedback" class="sc-feedback m-popup hidden" role="status" aria-live="polite">
+              <p class="sc-feedback-title" id="sc06-feedback-title"></p>
+            </div>
+          </div>
+          <div class="sc-media-col" data-reveal="3">
+            <div class="sc-img-frame">
+              <img src="assets/img/sc05-jelly-lab.png" width="391" height="514" alt="מדען מכין ג'לי צבעוני במעבדה">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-hint" id="sc06-scroll-hint" aria-hidden="true">
+        <span class="scroll-hint__group"><span class="scroll-hint__ripple"></span>
+          <img class="scroll-hint__cursor" src="assets/img/scroll-hint-cursor.svg" alt="" width="28" height="33"></span>
+      </div>
+      <div class="scq-bar">
+        <div class="scq-bar-main">
+          <button type="button" class="scq-check" id="sc06-check" disabled><span class="nav-label" data-label="צדקתי?">צדקתי?</span></button>
+          <button type="button" class="btn-continue hidden" id="sc06-continue"><span class="nav-label" data-label="המשך">המשך</span></button>
+        </div>
+        <button type="button" class="scq-back" id="sc06-back"><span class="nav-label" data-label="חזרה">חזרה</span></button>
+      </div>
+    </section>
+
+    <!-- SC07 — slot 7 (page 4), qbe 876865 v19 (q 2985179), multichoice single, shuffled, 12 marks, "שאלה 4". Item 007 q1.
+         Key: 4730469 = 1, 4730468 / 470 / 471 = 0. -->
+    <section class="screen" id="SC07" data-screen="SC07" aria-label="שאלה 4">
+      <div class="scq-screen-content scq-screen-content--scroll" id="sc07-content">
+        <h1 class="sc-title" data-reveal="1">שאלה 4</h1>
+        <div class="sc-cols">
+          <div class="sc-text-col" data-reveal="2">
+            <p class="sc-text sc-text--bold" id="sc07-prompt">כיצד תתכננו את הניסוי הבודק האם 'אפקט מפמבה' מתרחש גם בג'לי?</p>
+            <div class="scq-answers" id="sc07-answers" role="radiogroup" aria-labelledby="sc07-prompt">
+              <button type="button" class="scq-opt" data-id="4730468" role="radio" aria-checked="false"><span class="scq-opt-text">נכין ארבע קערות ג׳לי באופן זהה ובטמפרטורות זהות, ונשים אותן יחד באותו מקפיא</span><span class="scq-radio" aria-hidden="true"></span></button>
+              <button type="button" class="scq-opt" data-id="4730469" role="radio" aria-checked="false"><span class="scq-opt-text">נכין שתי קערות ג׳לי באופן זהה, אחת חמה ואחת פושרת, נשים אותן יחד באותו מקפיא, ונחזור על כך שלוש פעמים</span><span class="scq-radio" aria-hidden="true"></span></button>
+              <button type="button" class="scq-opt" data-id="4730470" role="radio" aria-checked="false"><span class="scq-opt-text">נכין שתי קערות ג׳לי באופן זהה, כל קערה בטמפרטורה שונה. נשים אותן בשני מקפיאים שונים ונחזור על כך שלוש פעמים</span><span class="scq-radio" aria-hidden="true"></span></button>
+              <button type="button" class="scq-opt" data-id="4730471" role="radio" aria-checked="false"><span class="scq-opt-text">נכין שתי קערות ג׳לי באופן זהה, אחת חמה ואחת פושרת, נשים אותן יחד באותו מקפיא. מבצעים את הניסוי פעם אחת</span><span class="scq-radio" aria-hidden="true"></span></button>
+            </div>
+            <div id="sc07-feedback" class="sc-feedback m-popup hidden" role="status" aria-live="polite">
+              <p class="sc-feedback-title" id="sc07-feedback-title"></p>
+            </div>
+          </div>
+          <div class="sc-media-col" data-reveal="3">
+            <div class="sc-img-frame">
+              <img src="assets/img/sc07-gelatin-freezer.png" width="437" height="437" alt="ג'לטין חם (כ-60°C) וג'לטין קר (כ-20°C) מוכנסים למקפיא">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-hint" id="sc07-scroll-hint" aria-hidden="true">
+        <span class="scroll-hint__group"><span class="scroll-hint__ripple"></span>
+          <img class="scroll-hint__cursor" src="assets/img/scroll-hint-cursor.svg" alt="" width="28" height="33"></span>
+      </div>
+      <div class="scq-bar">
+        <div class="scq-bar-main">
+          <button type="button" class="scq-check" id="sc07-check" disabled><span class="nav-label" data-label="צדקתי?">צדקתי?</span></button>
+          <button type="button" class="btn-continue hidden" id="sc07-continue"><span class="nav-label" data-label="המשך">המשך</span></button>
+        </div>
+        <button type="button" class="scq-back" id="sc07-back"><span class="nav-label" data-label="חזרה">חזרה</span></button>
+      </div>
+    </section>
+
+    <!-- SC08 — slot 8 (page 5), qbe 876872 v23 (q 2986614), multichoice single, shuffled, 13 marks, "שאלה 5". Item 008 q1.
+         Key: 4733209 = 1, 4733210–212 = 0. In Moodle the context comes before the "שאלה 5" heading; here the heading leads, as on every screen. -->
+    <section class="screen" id="SC08" data-screen="SC08" aria-label="שאלה 5">
+      <div class="scq-screen-content scq-screen-content--scroll" id="sc08-content">
+        <h1 class="sc-title" data-reveal="1">שאלה 5</h1>
+        <div class="sc-cols">
+          <div class="sc-text-col" data-reveal="2">
+            <p class="sc-text">במדע, <strong>בקרת עמיתים</strong> היא תהליך שבו חוקרים אחרים בודקים את העבודה שלך – את שיטת הניסוי, <br> את התוצאות ואת המסקנות – כדי לוודא שהמחקר נעשה בצורה אמינה, מדויקת ונטולת טעויות. <br><strong>רק ממצאים שעוברים בקרת עמיתים ומאושרים על־ידי חוקרים נוספים נחשבים לידע מדעי מהימן.</strong></p>
+            <p class="sc-text">לאחר ביצוע הניסוי מצאתם שבניגוד להשערתכם, הג׳לי החם דווקא התקשה מהר יותר מהקר - <br> תוצאה המזכירה את <strong>אפקט מפמבה</strong>.</p>
+            <p class="sc-text">כשפרסמתם את התוצאות באתר של תלמידים חוקרים, מספר קוראים הגיבו לניסוי וטענו שהם ניסו את אותו ניסוי בבית, אך <strong>לא קיבלו את אותן התוצאות</strong>.</p>
+            <p class="sc-text sc-text--bold" id="sc08-prompt">מהי הדרך המדעית הנכונה להתמודד עם מצב כזה?</p>
+            <div class="scq-answers" id="sc08-answers" role="radiogroup" aria-labelledby="sc08-prompt">
+              <button type="button" class="scq-opt" data-id="4733209" role="radio" aria-checked="false"><span class="scq-opt-text">לעודד קבוצות נוספות לשחזר את הניסוי ולבדוק אם יתקבלו תוצאות דומות</span><span class="scq-radio" aria-hidden="true"></span></button>
+              <button type="button" class="scq-opt" data-id="4733210" role="radio" aria-checked="false"><span class="scq-opt-text">להסביר לקוראים שהם כנראה טעו, כי אתם מדדתם בזהירות רבה</span><span class="scq-radio" aria-hidden="true"></span></button>
+              <button type="button" class="scq-opt" data-id="4733211" role="radio" aria-checked="false"><span class="scq-opt-text">להוסיף גרף ברור יותר כדי שהתוצאות שלכם ייראו משכנעות יותר</span><span class="scq-radio" aria-hidden="true"></span></button>
+              <button type="button" class="scq-opt" data-id="4733212" role="radio" aria-checked="false"><span class="scq-opt-text">לשנות את תוצאות הניסוי כך שיתאימו יותר להשערה המקורית</span><span class="scq-radio" aria-hidden="true"></span></button>
+            </div>
+            <div id="sc08-feedback" class="sc-feedback m-popup hidden" role="status" aria-live="polite">
+              <p class="sc-feedback-title" id="sc08-feedback-title"></p>
+            </div>
+          </div>
+          <div class="sc-media-col" data-reveal="3">
+            <div class="sc-img-frame">
+              <img src="assets/img/sc08-peer-review.png" width="493" height="467" alt="שני חוקרים בודקים ג'לי במעבדה">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-hint" id="sc08-scroll-hint" aria-hidden="true">
+        <span class="scroll-hint__group"><span class="scroll-hint__ripple"></span>
+          <img class="scroll-hint__cursor" src="assets/img/scroll-hint-cursor.svg" alt="" width="28" height="33"></span>
+      </div>
+      <div class="scq-bar">
+        <div class="scq-bar-main">
+          <button type="button" class="scq-check" id="sc08-check" disabled><span class="nav-label" data-label="צדקתי?">צדקתי?</span></button>
+          <button type="button" class="btn-continue hidden" id="sc08-continue"><span class="nav-label" data-label="המשך">המשך</span></button>
+        </div>
+        <button type="button" class="scq-back" id="sc08-back"><span class="nav-label" data-label="חזרה">חזרה</span></button>
+      </div>
+    </section>
+
+    <!-- SC09 — slot 9 (page 6), qbe 876870 v22 (q 2985161), ddimageortext, 13 marks, "שאלה 6". Item 009 q1 (matching).
+         Background: "גרף 6.png" (1212 × 822, the question's bgimage). Drags (MBZ no / group): 1 טמפרטורה (3),
+         2 דקות (3), 3 מעלות צלזיוס (3), 4 משך זמן ההתמצקות (3), 5 the title (1). Drops (no ← drag, xleft,ytop on the
+         1212 × 822 picture): 5 ← 5 (456,22) title; 4 ← 4 (23,318) y name; 2 ← 2 (23,363) y unit; 1 ← 1 (571,731) x name;
+         3 ← 3 (571,770) x unit. A zone takes only items of its own group (Moodle). Grade = right zones / 5.
+         The zones keep the MBZ arrangement (title above; axis name over its unit, left of the plot and under it)
+         but sit just outside the plot at this scale, so that the chips never cover each other or the curve.
+         2026-11-15: every empty zone has the same neutral width (the title zone's width gave the answer away);
+         a filled zone fits its text; V / X sit on the zone's right; labels 22px; the picture is 528 wide.
+         Q6.png (the friend in Scotland, story art) is not shown: the screen's room goes to the graph board. -->
+    <section class="screen" id="SC09" data-screen="SC09" aria-label="שאלה 6">
+      <div class="scq-screen-content scq-screen-content--scroll" id="sc09-content">
+        <h1 class="sc-title" data-reveal="1">שאלה 6</h1>
+        <div class="sc-cols sc-cols--dd">
+          <div class="sc-text-col" data-reveal="2" data-reveal-fade>
+            <p class="sc-text">לפניכם גרף של תוצאות הניסוי לבדיקת אפקט מפמבה אותו שיחזר חבר שלכם בסקוטלנד: <strong>בדיקת השפעת טמפרטורת הג'ל בעת הכנסתו למקפיא על משך זמן ההתמצקות במקפיא.</strong></p>
+            <p class="sc-text sc-text--bold" id="sc09-prompt">גררו את רכיבי הגרף למקומם הנכון בתרשים.</p>
+            <div class="dd-tray" id="sc09-tray" role="group" aria-labelledby="sc09-prompt"></div>
+            <div id="sc09-feedback" class="sc-feedback m-popup hidden" role="status" aria-live="polite">
+              <p class="sc-feedback-title" id="sc09-feedback-title"></p>
+              <button type="button" id="sc09-reveal-btn" class="sc-reveal-btn hidden" aria-pressed="false">הצג תשובה נכונה</button>
+            </div>
+          </div>
+          <div class="sc-media-col" data-reveal="3" data-reveal-fade>
+            <div class="dd-board" id="sc09-board">
+              <img class="dd-board-img" src="assets/img/sc09-graph.png" width="1212" height="822" alt="גרף: על הציר האופקי הערכים 10 עד 60, על הציר האנכי 15 עד 35. הקו עולה מ-15 ב-10 עד 37 ב-60.">
+            </div>
+          </div>
+        </div>
+        <!-- Drag gesture hint (SC09 only): a hand presses a tray chip and carries it onto an empty drop zone.
+             Positioned by script.js (updateDragHint); the zone is never the chip's right one, so it gives no answer away. -->
+        <div class="drag-hint" id="sc09-drag-hint" aria-hidden="true">
+          <span class="drag-hint__group"><span class="drag-hint__chip"></span><span class="drag-hint__ripple"></span>
+            <img class="drag-hint__cursor" src="assets/img/scroll-hint-cursor.svg" alt="" width="28" height="33"></span>
+        </div>
+      </div>
+      <div class="scroll-hint" id="sc09-scroll-hint" aria-hidden="true">
+        <span class="scroll-hint__group"><span class="scroll-hint__ripple"></span>
+          <img class="scroll-hint__cursor" src="assets/img/scroll-hint-cursor.svg" alt="" width="28" height="33"></span>
+      </div>
+      <div class="scq-bar">
+        <div class="scq-bar-main">
+          <button type="button" class="scq-check" id="sc09-check" disabled><span class="nav-label" data-label="צדקתי?">צדקתי?</span></button>
+          <button type="button" class="btn-continue hidden" id="sc09-continue"><span class="nav-label" data-label="המשך">המשך</span></button>
+        </div>
+        <button type="button" class="scq-back" id="sc09-back"><span class="nav-label" data-label="חזרה">חזרה</span></button>
+      </div>
+    </section>
+
+    <!-- SC10 — slot 10 (page 6), qbe 876873 v17 (q 2985554), multichoice single, shuffled, 13 marks, "שאלה 7". Item 010 q1.
+         Key: 4730851 = 1, 4730852–854 = 0. The question refers to "הגרף בשאלה 6", which Moodle showed on the same
+         page. Here it is the graph file in this question's own file area ("גרף שאלה 6.png"), with zoom; Q7.png above it. -->
+    <section class="screen" id="SC10" data-screen="SC10" aria-label="שאלה 7">
+      <div class="scq-screen-content scq-screen-content--scroll" id="sc10-content">
+        <h1 class="sc-title" data-reveal="1">שאלה 7</h1>
+        <div class="sc-cols">
+          <div class="sc-text-col" data-reveal="2">
+            <p class="sc-text sc-text--bold" id="sc10-prompt">איזו מסקנה ניתן להסיק מתוצאות הניסוי המוצגות בגרף בשאלה 6?</p>
+            <div class="scq-answers" id="sc10-answers" role="radiogroup" aria-labelledby="sc10-prompt">
+              <button type="button" class="scq-opt" data-id="4730851" role="radio" aria-checked="false"><span class="scq-opt-text">ככל שטמפרטורת הג׳לי ההתחלתית גבוהה יותר, משך זמן ההתמצקות ארוך יותר</span><span class="scq-radio" aria-hidden="true"></span></button>
+              <button type="button" class="scq-opt" data-id="4730852" role="radio" aria-checked="false"><span class="scq-opt-text">ככל שטמפרטורת הג׳לי ההתחלתית גבוהה יותר, משך זמן ההתמצקות קצר יותר</span><span class="scq-radio" aria-hidden="true"></span></button>
+              <button type="button" class="scq-opt" data-id="4730853" role="radio" aria-checked="false"><span class="scq-opt-text">טמפרטורת ההתחלה אינה משפיעה על משך זמן ההתמצקות</span><span class="scq-radio" aria-hidden="true"></span></button>
+              <button type="button" class="scq-opt" data-id="4730854" role="radio" aria-checked="false"><span class="scq-opt-text">רק מ-40 מעלות צלזיוס ישנה השפעה של הטמפ' ההתחלתית על זמן ההתמצקות</span><span class="scq-radio" aria-hidden="true"></span></button>
+            </div>
+            <div id="sc10-feedback" class="sc-feedback m-popup hidden" role="status" aria-live="polite">
+              <p class="sc-feedback-title" id="sc10-feedback-title"></p>
+            </div>
+          </div>
+          <!-- The lab picture ABOVE the graph, larger (producer 2026-11-15; replaces the side-by-side
+               layout of 2026-11-12). -->
+          <div class="sc-media-col" data-reveal="3">
+            <div class="sc-img-frame sc-img-frame--small">
+              <button type="button" class="img-zoom-btn" data-zoom-src="assets/img/sc10-lab-notes.png" data-zoom-alt="רישומי ניסוי במעבדה" aria-label="הגדלת התמונה: רישומי ניסוי במעבדה">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="2"/><line x1="13.5" y1="13.5" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <img src="assets/img/sc10-lab-notes.png" width="437" height="437" alt="רישומי ניסוי במעבדה">
+            </div>
+            <figure class="sc-fig">
+            <div class="sc-img-frame sc-img-frame--data">
+              <button type="button" class="img-zoom-btn" data-zoom-src="assets/img/sc10-graph.png" data-zoom-alt="הגרף משאלה 6: על הציר האופקי הערכים 10 עד 60, על הציר האנכי 15 עד 35. הקו עולה מ-15 ב-10 עד 37 ב-60." aria-label="הגדלת התמונה">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="2"/><line x1="13.5" y1="13.5" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </button>
+              <img src="assets/img/sc10-graph.png" width="486" height="321" alt="הגרף משאלה 6: על הציר האופקי הערכים 10 עד 60, על הציר האנכי 15 עד 35. הקו עולה מ-15 ב-10 עד 37 ב-60.">
+            </div>
+            <figcaption class="sc-media-caption">הגרף משאלה 6</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-hint" id="sc10-scroll-hint" aria-hidden="true">
+        <span class="scroll-hint__group"><span class="scroll-hint__ripple"></span>
+          <img class="scroll-hint__cursor" src="assets/img/scroll-hint-cursor.svg" alt="" width="28" height="33"></span>
+      </div>
+      <div class="scq-bar">
+        <div class="scq-bar-main">
+          <button type="button" class="scq-check" id="sc10-check" disabled><span class="nav-label" data-label="צדקתי?">צדקתי?</span></button>
+          <button type="button" class="btn-continue hidden" id="sc10-continue"><span class="nav-label" data-label="המשך">המשך</span></button>
+        </div>
+        <button type="button" class="scq-back" id="sc10-back"><span class="nav-label" data-label="חזרה">חזרה</span></button>
+      </div>
+    </section>
+
+    <!-- SC11 — slot 11 (page 7), qbe 876867 v17 (q 2985176), multichoice single, shuffled, 12 marks, "שאלה 8". Item 011 q1.
+         Key: 4730456 = 1, 4730457–459 = 0. -->
+    <section class="screen" id="SC11" data-screen="SC11" aria-label="שאלה 8">
+      <div class="scq-screen-content scq-screen-content--scroll" id="sc11-content">
+        <h1 class="sc-title" data-reveal="1">שאלה 8</h1>
+        <div class="sc-cols">
+          <div class="sc-text-col" data-reveal="2">
+            <!-- Order changed (producer 2026-11-12): the question first, then the instruction. -->
+            <p class="sc-text sc-text--bold" id="sc11-prompt">האם ממצאי הניסוי החדש של חברכם מסקוטלנד מתאימים לממצאים של מפמבה, או סותרים אותם?</p>
+            <p class="sc-text">בחרו את התשובה הנכונה:</p>
+            <div class="scq-answers" id="sc11-answers" role="radiogroup" aria-labelledby="sc11-prompt">
+              <button type="button" class="scq-opt" data-id="4730456" role="radio" aria-checked="false"><span class="scq-opt-text">הם סותרים את ממצאי מפמבה — כאן החומר החם דווקא התקשה לאט יותר</span><span class="scq-radio" aria-hidden="true"></span></button>
+              <button type="button" class="scq-opt" data-id="4730457" role="radio" aria-checked="false"><span class="scq-opt-text">הם תואמים את ממצאי מפמבה — גם כאן החומר החם התקשה מהר יותר</span><span class="scq-radio" aria-hidden="true"></span></button>
+              <button type="button" class="scq-opt" data-id="4730458" role="radio" aria-checked="false"><span class="scq-opt-text">ייתכן שהממצאים שונים בגלל תנאי ניסוי אחרים, ולכן דרוש מחקר נוסף לפני השוואה</span><span class="scq-radio" aria-hidden="true"></span></button>
+              <button type="button" class="scq-opt" data-id="4730459" role="radio" aria-checked="false"><span class="scq-opt-text">הם חלקית תואמים וחלקית סותרים — בחלק מהטמפרטורות התקבל אפקט מפמבה ובחלק לא</span><span class="scq-radio" aria-hidden="true"></span></button>
+            </div>
+            <div id="sc11-feedback" class="sc-feedback m-popup hidden" role="status" aria-live="polite">
+              <p class="sc-feedback-title" id="sc11-feedback-title"></p>
+            </div>
+          </div>
+          <div class="sc-media-col" data-reveal="3">
+            <div class="sc-img-frame">
+              <img src="assets/img/sc11-mpemba-scotland.png" width="493" height="467" alt="ארסטו מפמבה והחבר מסקוטלנד עם זכוכית מגדלת">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-hint" id="sc11-scroll-hint" aria-hidden="true">
+        <span class="scroll-hint__group"><span class="scroll-hint__ripple"></span>
+          <img class="scroll-hint__cursor" src="assets/img/scroll-hint-cursor.svg" alt="" width="28" height="33"></span>
+      </div>
+      <div class="scq-bar">
+        <div class="scq-bar-main">
+          <button type="button" class="scq-check" id="sc11-check" disabled><span class="nav-label" data-label="צדקתי?">צדקתי?</span></button>
+          <button type="button" class="btn-continue hidden" id="sc11-continue"><span class="nav-label" data-label="המשך">המשך</span></button>
+        </div>
+        <button type="button" class="scq-back" id="sc11-back"><span class="nav-label" data-label="חזרה">חזרה</span></button>
+      </div>
+    </section>
+
+    <!-- SC12 — slot 12 (page 8), qbe 882177 v1 (q 2985537), description "סיכום", 0 marks. Item 012 (no question).
+         The LAST screen: "סיימתי" is the learner's last click and sends the component 'completed' (finishComponent). -->
+    <section class="screen" id="SC12" data-screen="SC12" aria-label="סיכום">
+      <div class="scq-screen-content scq-screen-content--scroll" id="sc12-content">
+        <h1 class="sc-title" data-reveal="1">סיכום</h1>
+        <div class="sc-cols">
+          <!-- half the page wide (producer 2026-11-12) -->
+          <div class="sc-text-col sc-text-col--half" data-reveal="2">
+            <p class="sc-text sc-text--intro">אז מי צודק — מפמבה או ידידכם מסקוטלנד?<br>כאשר ניסוי אחד מראה תופעה מעניינת וניסוי אחר אינו מצליח לשחזר אותה, זה לא אומר שהתופעה "לא נכונה" — אלא שהיא עשויה להתקיים רק בתנאים מסוימים.</p>
+            <p class="sc-text sc-text--intro">במדע שואלים: האם התופעה מתרחשת, וגם: באילו תנאים היא מופיעה.</p>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-hint" id="sc12-scroll-hint" aria-hidden="true">
+        <span class="scroll-hint__group"><span class="scroll-hint__ripple"></span>
+          <img class="scroll-hint__cursor" src="assets/img/scroll-hint-cursor.svg" alt="" width="28" height="33"></span>
+      </div>
+      <div class="scq-bar">
+        <div class="scq-bar-main">
+          <button type="button" class="btn-continue" id="sc12-continue"><span class="nav-label" data-label="סיימתי">סיימתי</span></button>
+        </div>
+        <button type="button" class="scq-back" id="sc12-back"><span class="nav-label" data-label="חזרה">חזרה</span></button>
+      </div>
+    </section>
+
+    <!-- Image zoom: one shared modal, outside every .screen, directly in #app (720 global component).
+         Used by the SC10 graph — the one primary learning image that sits in an image column. -->
+    <div id="img-zoom-modal" class="hidden" aria-hidden="true">
+      <div class="img-zoom-modal-backdrop" data-zoom-close="true"></div>
+      <div class="img-zoom-modal-panel" role="dialog" aria-modal="true" aria-label="תמונה מוגדלת">
+        <button type="button" class="img-zoom-modal-close" data-zoom-close="true" aria-label="סגירת התמונה">
+          <svg width="18" height="18" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <div class="img-zoom-modal-stage"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- xAPI reporting, mafmar-moodle layout: the shared layer lives INSIDE the component folder.
+     Definition-only files first, the part's own scripts, and 90-boot.js LAST in its own tag.
+     Same ?v= on every shared file; bump on every release that changes a file. -->
+<script src="unit-js/10-identity.js?v=2"></script>
+<script src="unit-js/20-xapi.js?v=2"></script>
+<script src="unit-js/40-ledger.js?v=2"></script>
+<script src="unit-js/50-loader.js?v=2"></script>
+<script src="motion.js?v=2"></script>
+<script src="registry.js?v=2"></script>
+<script src="script.js?v=2"></script>
+<script src="unit-js/90-boot.js?v=2"></script>
+</body>
+</html>
