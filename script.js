@@ -734,9 +734,13 @@ function finishComponent(btn) {
     var idx = SCREEN_ORDER.indexOf(s);
     if (idx >= 0) _goToByIndex(idx);
   };
-  // Alias so the snippet's `goToScreen`/`showScreen` probes also match.
-  window.goToScreen = function (id) { window.goTo(id); };
-  window.showScreen = function (id) { window.goTo(id); };
+  // NOTE: do NOT alias `window.goToScreen` to `window.goTo`. In classic
+  // (sloppy) scripts, `window.goToScreen` is the same slot as the top-level
+  // `function goToScreen(id)` declared in registry.js — overwriting it would
+  // make the inner `goTo(n)` (line ~77) call the wrapper, which calls
+  // `window.goTo`, which calls the wrapper again → stack overflow. The QA
+  // snippet probes nav names in order (`goTo, show, showScreen, ...`) and
+  // stops at the first one it finds, so `window.goTo` alone is sufficient.
 
   // Rule 4.1 — unhide the continue buttons in review mode so the
   // reviewer can advance without clearing the quiz gate.
